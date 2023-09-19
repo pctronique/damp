@@ -32,20 +32,33 @@ RUN apt install -y unzip
 RUN apt install -y libyaml-dev
 RUN apt install -y libc-client-dev
 RUN apt install -y libkrb5-dev
+RUN apt install -y sendmail
+RUN apt install -y ssmtp
+RUN apt install -y curl
+RUN apt install -y git
 
-RUN docker-php-ext-install gd
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install xsl
 RUN docker-php-ext-install zip
-RUN docker-php-ext-install intl
 RUN docker-php-ext-configure gd --with-jpeg
+RUN docker-php-ext-install gd
 RUN docker-php-ext-configure intl
+RUN docker-php-ext-install intl
 RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl
 RUN docker-php-ext-install imap
-#RUN docker-php-ext-install json
+    
+# Goto temporary directory.
+WORKDIR "/tmp"
 
-RUN pecl install xdebug
-RUN rm -rf /tmp/pear
+RUN pecl install -o -f xdebug
+
+#install mailhog     
+RUN curl -Lsf 'https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz' | tar -C '/usr/local' -xvzf -
+ENV PATH /usr/local/go/bin:$PATH
+RUN go get github.com/mailhog/mhsendmail
+RUN cp /root/go/bin/mhsendmail /usr/bin/mhsendmail
+
+WORKDIR "/home/project"
 
 CMD ["php-fpm"]

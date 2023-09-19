@@ -6,8 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    Bonjour
-    <?php var_dump("test01", "test02");
-    echo $test; ?>
+  <h1 style="text-align: center;">Hello from PHP!</h1>
+  <p style="text-align: center;"><img src="./php_img.svg" alt="icon" width="250"></p>
 </body>
 </html>

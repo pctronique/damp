@@ -8,9 +8,7 @@ mkdir -p projecttmp/logs/symfony
 mkdir -p projecttmp/logs/php
 mkdir -p projecttmp/logs/xdebug
 mkdir -p projecttmp/logs/sgbd
-
-# copier les configurations et fichiers
-cp -R config/data/ project/www/
+mkdir -p projecttmp/logs/httpd
 
 # modifier les droits sur les dossiers
 chmod 777 -R project

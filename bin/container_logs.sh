@@ -3,25 +3,26 @@ do
    export $line
 done < ${0%/*}/../.env
 
-option=$@
+option=$1
 if [[ "$option" = "" ]]
 then
-    option="--help"
+    option="--helps"
 fi
 
-if [[ "$option" = "--help" ]]
+if [[ "$option" = "--helps" ]]
 then
     echo "Options:"
-    echo " --php"
-    echo " --mariadb"
-    echo " --phpmyadmin"
-    echo " --mailhog"
+    echo "   --php"
+    echo "   --mariadb"
+    echo "   --phpmyadmin"
+    echo "   --mailhog"
+    echo "   --helps"
     echo " [id ou nom du conteneur]"
 else
-    container=$@
+    container=$1
     case "$container" in
         --php)
-            container=$NAME_PHP_CONTAINER
+            container=$NAME_SYMFONY_CONTAINER
             ;;
     
         --mariadb)
