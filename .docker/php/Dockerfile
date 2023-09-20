@@ -53,6 +53,9 @@ WORKDIR "/tmp"
 
 RUN pecl install -o -f xdebug
 
+COPY xdebug_extends.sh /tmp/
+RUN /tmp/xdebug_extends.sh
+
 #install mailhog     
 RUN curl -Lsf 'https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz' | tar -C '/usr/local' -xvzf -
 ENV PATH /usr/local/go/bin:$PATH

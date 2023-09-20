@@ -1,15 +1,3 @@
-/nbproject/private/
+/project/www/config/config_sgbd.php
 /projecttmp/
-/project/projectSymphony/node_modules/
-/project/projectSymphony/npm-debug.log
-/project/projectSymphony/yarn-error.log
-/project/projectSymphony/package-lock.json
-/project/projectSymphony/.env.local
-/project/projectSymphony/.env.local.php
-/project/projectSymphony/.env.*.local
-/project/projectSymphony/config/secrets/prod/prod.decrypt.private.php
-/project/projectSymphony/public/bundles/
-/project/projectSymphony/var/
-/project/projectSymphony/vendor/
-/project/projectSymphony/
 /.env

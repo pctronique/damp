@@ -29,9 +29,10 @@ services:
         build: ./.docker/php/
         volumes:
             - ./project/:/home/project
-            - ./projecttmp/logs/php:/usr/local/projecttmp/log/php:rw
-            - ./projecttmp/logs/xdebug:/usr/local/projecttmp/log/xdebug:rw
-            - ./projecttmp/tmp/php:/usr/local/projecttmp/tmp/php:rw
+            - ./projecttmp/logs/php:/var/log/php:rw
+            - ./projecttmp/logs/xdebug:/var/log/xdebug:rw
+            - ./projecttmp/tmp/php:/var/tmp/php:rw
+            - ./.docker/config/config_sgbd.php:/home/project/www/config/config_sgbd.php
             - ./.docker/php/opcache-recommended.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini:ro
             - ./.docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
             - ./.docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
@@ -45,8 +46,8 @@ services:
 ###########################
     mariadb:
         container_name: ${NAME_MARIABD_CONTAINER}
-        restart: always
         image: mariadb:${VALUE_MARIABD_VERSION}
+        restart: always
         volumes:
             - ./projecttmp/logs/sgbd:/var/log/mysql:rw
             - ./projecttmp/tmp/sgbd:/var/tmp/mysql:rw
@@ -84,6 +85,7 @@ services:
     mailhog:
         container_name: ${NAME_MAILHOG_CONTAINER}
         image: mailhog/mailhog:${VALUE_MAILHOG_VERSION}
+        restart: always
         ports:
             - ${VALUE_MAILHOG_DISPLAY_PORT}:8025
             
