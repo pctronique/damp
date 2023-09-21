@@ -32,13 +32,10 @@ services:
             - ./projecttmp/logs/php:/var/log/php:rw
             - ./projecttmp/logs/xdebug:/var/log/xdebug:rw
             - ./projecttmp/tmp/php:/var/tmp/php:rw
-            - ./.docker/config/config_sgbd.php:/home/project/www/config/config_sgbd.php
+            - ./.docker/config/config_sgbd.php:/home/project/www/config/config_sgbd.php:rw
             - ./.docker/php/opcache-recommended.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini:ro
-            - ./.docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
             - ./.docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
-            #- ./.docker/php/php-sendmail.ini:/usr/local/etc/php/conf.d/php-sendmail.ini:ro
-            #- ./.docker/php/ssmtp.conf:/etc/ssmtp/ssmtp.conf:ro
-            #- ./.docker/php/hosts:/etc/hosts:ro
+            - ./.docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
             
 
 ###########################

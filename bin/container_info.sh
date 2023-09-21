@@ -17,12 +17,12 @@ then
     echo "   --phpmyadmin"
     echo "   --mailhog"
     echo "   --helps"
-    echo " [id ou nom du conteneur]"
+    echo "   [id ou nom du conteneur]"
 else
     container=$1
     case "$container" in
         --php)
-            container=$NAME_SYMFONY_CONTAINER
+            container=$NAME_PHP_CONTAINER
             ;;
     
         --mariadb)
