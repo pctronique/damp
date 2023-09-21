@@ -1,3 +1,12 @@
+./bin/install/start_install.sh
+
+#./bin/message.sh
+
+if [ ! -e .env ]
+then
+    exit 1
+fi
+
 # creation des tmp du docker
 mkdir -p projecttmp/sgbd_data
 mkdir -p projecttmp/tmp
@@ -14,11 +23,7 @@ mkdir -p projecttmp/logs/httpd
 chmod 777 -R project
 chmod 777 -R projecttmp
 
-# creation du fichier .env
-if [ ! -e .env ]
-then
-    cp .env.example .env
-fi
-
 # creation du docker du projet
-docker-compose up -d
+if docker-compose up -d ; then
+    ./bin/install/end_install.sh
+fi
