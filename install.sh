@@ -24,6 +24,6 @@ chmod 777 -R project
 chmod 777 -R projecttmp
 
 # creation du docker du projet
-if docker-compose up -d ; then
+if docker-compose up --build -d ; then
     ./bin/install/end_install.sh
 fi
