@@ -5,11 +5,11 @@ done < ${0%/*}/../.env
 
 d_start () {
    docker container start $NAME_SYMFONY_CONTAINER
-   docker container start $NAME_HTTPD_CONTAINER
+   docker container start $NAME_SERVER_CONTAINER
 }
 
 d_stop () {
-   docker container stop $NAME_HTTPD_CONTAINER
+   docker container stop $NAME_SERVER_CONTAINER
    docker container stop $NAME_SYMFONY_CONTAINER
 }
  
