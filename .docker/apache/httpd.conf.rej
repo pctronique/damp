@@ -1,0 +1,130 @@
+--- httpd.conf
++++ 00httpd.conf
+@@ -139,11 +139,11 @@
+ LoadModule setenvif_module modules/mod_setenvif.so
+ LoadModule version_module modules/mod_version.so
+ #LoadModule remoteip_module modules/mod_remoteip.so
+-#LoadModule proxy_module modules/mod_proxy.so
++LoadModule proxy_module modules/mod_proxy.so
+ #LoadModule proxy_connect_module modules/mod_proxy_connect.so
+ #LoadModule proxy_ftp_module modules/mod_proxy_ftp.so
+-#LoadModule proxy_http_module modules/mod_proxy_http.so
+-#LoadModule proxy_fcgi_module modules/mod_proxy_fcgi.so
++LoadModule proxy_http_module modules/mod_proxy_http.so
++LoadModule proxy_fcgi_module modules/mod_proxy_fcgi.so
+ #LoadModule proxy_scgi_module modules/mod_proxy_scgi.so
+ #LoadModule proxy_uwsgi_module modules/mod_proxy_uwsgi.so
+ #LoadModule proxy_fdpass_module modules/mod_proxy_fdpass.so
+@@ -188,7 +188,7 @@
+ </IfModule>
+ #LoadModule dav_fs_module modules/mod_dav_fs.so
+ #LoadModule dav_lock_module modules/mod_dav_lock.so
+-#LoadModule vhost_alias_module modules/mod_vhost_alias.so
++LoadModule vhost_alias_module modules/mod_vhost_alias.so
+ #LoadModule negotiation_module modules/mod_negotiation.so
+ LoadModule dir_module modules/mod_dir.so
+ #LoadModule imagemap_module modules/mod_imagemap.so
+@@ -196,7 +196,7 @@
+ #LoadModule speling_module modules/mod_speling.so
+ #LoadModule userdir_module modules/mod_userdir.so
+ LoadModule alias_module modules/mod_alias.so
+-#LoadModule rewrite_module modules/mod_rewrite.so
++LoadModule rewrite_module modules/mod_rewrite.so
+ 
+ <IfModule unixd_module>
+ #
+@@ -207,8 +207,8 @@
+ # It is usually good practice to create a dedicated user and group for
+ # running httpd, as with most system services.
+ #
+-User www-data
+-Group www-data
++User daemon
++Group daemon
+ 
+ </IfModule>
+ 
+@@ -229,7 +229,7 @@
+ # e-mailed.  This address appears on some server-generated pages, such
+ # as error documents.  e.g. admin@your-domain.com
+ #
+-ServerAdmin you@example.com
++#ServerAdmin you@example.com
+ 
+ #
+ # ServerName gives the name and port that the server uses to identify itself.
+@@ -238,17 +238,17 @@
+ #
+ # If your host doesn't have a registered DNS name, enter its IP address here.
+ #
+-#ServerName www.example.com:80
++#ServerName localhost:80
+ 
+ #
+ # Deny access to the entirety of your server's filesystem. You must
+ # explicitly permit access to web content directories in other 
+ # <Directory> blocks below.
+ #
+-<Directory />
+-    AllowOverride none
+-    Require all denied
+-</Directory>
++#<Directory />
++#    AllowOverride none
++#    Require all denied
++#</Directory>
+ 
+ #
+ # Note that from this point forward you must specifically allow
+@@ -262,8 +262,8 @@
+ # documents. By default, all requests are taken from this directory, but
+ # symbolic links and aliases may be used to point to other locations.
+ #
+-DocumentRoot "/usr/local/apache2/htdocs"
+-<Directory "/usr/local/apache2/htdocs">
++#DocumentRoot "/usr/local/apache2/htdocs"
++#<Directory "/usr/local/apache2/htdocs">
+     #
+     # Possible values for the Options directive are "None", "All",
+     # or any combination of:
+@@ -276,27 +276,27 @@
+     # http://httpd.apache.org/docs/2.4/mod/core.html#options
+     # for more information.
+     #
+-    Options Indexes FollowSymLinks
++    #Options Indexes FollowSymLinks
+ 
+     #
+     # AllowOverride controls what directives may be placed in .htaccess files.
+     # It can be "All", "None", or any combination of the keywords:
+     #   AllowOverride FileInfo AuthConfig Limit
+     #
+-    AllowOverride None
++    #AllowOverride None
+ 
+     #
+     # Controls who can get stuff from this server.
+     #
+-    Require all granted
+-</Directory>
++    #Require all granted
++#</Directory>
+ 
+ #
+ # DirectoryIndex: sets the file that Apache will serve if a directory
+ # is requested.
+ #
+ <IfModule dir_module>
+-    DirectoryIndex index.html
++    DirectoryIndex index.html index.php
+ </IfModule>
+ 
+ #
+@@ -522,6 +522,7 @@
+ 
+ # Virtual hosts
+ #Include conf/extra/httpd-vhosts.conf
++Include conf/vhosts/*.conf
+ 
+ # Local access to the Apache HTTP Server Manual
+ #Include conf/extra/httpd-manual.conf

@@ -185,9 +185,9 @@ Il est préférable d'incrémenter à l'identique les ports du projet.<br />
 Si je dois incrémenter de 9 un des ports (je conserve la valeur d'incrémentation la plus haute), je le fais aussi pour les autres dans le fichier "**.env**". Ceci évite de se perdre dans les ports disponibles.<br />
 Exemple :<br />
 ```
-VALUE_SERVER_PORT=89
+VALUE_PROJECT_PORT=89
 VALUE_SGBD_DISPLAY_PORT=8089
-VALUE_MAIL_DISPLAY_DISPLAY_PORT=8029
+VALUE_MAIL_DISPLAY_PORT=8029
 ```
 
 ### Installer le conteneur
