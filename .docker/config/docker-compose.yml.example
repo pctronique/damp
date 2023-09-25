@@ -65,7 +65,7 @@ services:
 ###########################
     phpmyadmin:
         container_name: ${NAME_SGBD_DISPLAY_CONTAINER}
-        image: phpmyadmin/phpmyadmin
+        image: phpmyadmin/phpmyadmin:${VALUE_SGBD_DISPLAY_VERSION}
         restart: always
         environment:
             - PMA_PORT=3306
