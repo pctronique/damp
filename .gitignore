@@ -1,3 +1,5 @@
-/project/www/config/config_sgbd.php
-/projecttmp/
 /.env
+/projecttmp
+/tmp_install
+/install_tmp
+/project/www/config/config_sgbd.php

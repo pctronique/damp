@@ -13,6 +13,8 @@ if ! ${0%/*}/install/php_create_config.sh ; then
 fi
 
 cd ${0%/*}/../
-docker-compose up -d
+if ! docker compose up -d ; then
+  exit 1
+fi
 
 exit 0
