@@ -25,7 +25,9 @@ then
       export $line
    done < "$FOLDER_BASE/.env"
    
-   $FOLDER_BASE/bin/gitignore.sh
+   if ! $FOLDER_BASE/bin/gitignore.sh ; then
+      exit 1
+   fi
 
 fi
 

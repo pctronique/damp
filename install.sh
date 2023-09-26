@@ -59,15 +59,11 @@ if docker compose up -d ; then
     if ! ${0%/*}/bin/createProject.sh ; then
       exit 1
     fi
-  #else
-  #  if ! ${0%/*}/bin/updateProject.sh ; then
-  #    exit 1
-  #  fi
   fi
 
-  #${0%/*}/start.sh
-
-  rm -f -r "${0%/*}/tmp_install"
+  if ! rm -f -r "${0%/*}/tmp_install" ; then
+    exit 1
+  fi
 
   ${0%/*}/bin/install/display_web.sh
 
