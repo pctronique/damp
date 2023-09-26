@@ -20,6 +20,7 @@ Version 1.0.0
     <li>
         <a href="#création-du-conteneur-docker">Création du conteneur (Docker)</a>
         <ul>
+            <li><a href="#pour-windows">Pour Windows</a></li>
             <li><a href="#entrer-le-nom-du-projet">Entrer le nom du projet</a></li>
             <li><a href="#les-ports-utilisés-par-docker">Les ports utilisés par docker</a></li>
             <li><a href="#modifier-l-adresse-de-port">Modifier l'adresse de port</a></li>
@@ -132,6 +133,14 @@ Vous pouvez configurer votre serveur ou le php :
 ## Création du conteneur (Docker)
 Vous devez avoir installé Docker. 
 Pour la création du conteneur docker du projet.
+
+### Pour Windows
+Testé sur Windows WSL2 et Ubuntu.
+Vous devrez passer sur le prompt de linux ($) :
+```
+> bash
+$ [entrer votre commande Linux]
+```
 
 ### Entrer le nom du projet
 Pour concevoir le projet avec le nom de "**nameProject**" :
