@@ -56,7 +56,7 @@ if docker compose up -d ; then
 
   if [ $TYPE_INSTALL_PROJECT = "install" ]
   then
-    if ! ${0%/*}/bin/createProject.sh ; then
+    if ! ${0%/*}/bin/install/createProject.sh ; then
       exit 1
     fi
   fi
