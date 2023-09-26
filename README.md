@@ -100,7 +100,7 @@ Il est possible d'entrer des tables lors de sa création, pour se faire il faudr
 J'ai mis en place un exemple avec la table people "**0001_damp.sql**" :
 ```
 # start data
-- ./.docker/sgbd_data/0001_damp.sql:/docker-entrypoint-initdb.d/0001_damp.sql
+- ./config/sgbd_data/0001_damp.sql:/docker-entrypoint-initdb.d/0001_damp.sql
 # stop data
 ```
 <br /><img src="./images/screen72.jpg" alt="exemple nodejs server" width="300" height="175"><br />
@@ -352,7 +352,7 @@ Lors de l'installation, il démarre le serveur php du mini-projet sur '**localho
 
 ### Les fichiers de configurations du projet
 Vous pouvez configurer celui-ci :
-* config_sgbd.php : dans le dossier ".docker/config/"
+* config_sgbd.php : dans le dossier "config/"
 
 > [!WARNING]
 > Ne pas modifier le fichier "**config_sgbd.php**" du dossier "**project/www/config**" qui sera et restera vide. 
