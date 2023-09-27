@@ -26,8 +26,11 @@ fi
 if [ -e ${0%/*}/tmp_install/type_install ]
 then
   while read line  
-  do   
-    export $line
+  do
+    if [ ! -z "$line" ]
+    then
+      export $line
+    fi
   done < ${0%/*}/tmp_install/type_install
 else
   TYPE_INSTALL_PROJECT="update"
@@ -57,6 +60,9 @@ if docker compose up -d ; then
   if [ $TYPE_INSTALL_PROJECT = "install" ]
   then
     if ! ${0%/*}/bin/install/createProject.sh ; then
+      exit 1
+    fi
+    if ! ${0%/*}/bin/version/recup_all_version.sh ; then
       exit 1
     fi
   fi
