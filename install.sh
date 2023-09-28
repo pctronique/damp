@@ -16,14 +16,11 @@ case "$1" in
 
 esac
 
-if [ ! -e ${0%/*}/.env ]
-then
-  if ! ${0%/*}/bin/install/create_env_exp.sh ; then
-    exit 1
-  fi
+if ! bash -c "${0%/*}/bin/install/all_question.sh" ; then
+  exit 1
 fi
 
-if [ -e ${0%/*}/tmp_install/type_install ]
+if [ -f ${0%/*}/tmp_install/type_install ]
 then
   while read line  
   do
@@ -59,16 +56,18 @@ if docker compose up -d ; then
 
   if [ $TYPE_INSTALL_PROJECT = "install" ]
   then
-    if ! ${0%/*}/bin/install/createProject.sh ; then
+    if ! bash -c "${0%/*}/bin/install/createProject.sh" ; then
       exit 1
     fi
-    if ! ${0%/*}/bin/version/recup_all_version.sh ; then
+    if ! bash -c "${0%/*}/bin/version/recup_all_version.sh" ; then
       exit 1
     fi
   fi
 
-  rm -f -r "${0%/*}/tmp_install"
+  if ! bash -c "${0%/*}/bin/install/display_web.sh" ; then
+    exit 1
+  fi
 
-  ${0%/*}/bin/install/display_web.sh
+  rm -f -r "${0%/*}/tmp_install"
 
 fi
