@@ -12,6 +12,19 @@ ENV_DEF="$FOLDER_ENV_DEF/.env"
 FILE_EXP="$FOLDER_BASE/.env.example"
 FILE_ENV="$FOLDER_BASE/.env"
 
+if [ -f $FOLDER_BASE/tmp_install/web_display ]
+then
+  while read line  
+  do
+    if [ ! -z "$line" ]
+    then
+      export $line
+    fi
+  done < $FOLDER_BASE/tmp_install/web_display
+else
+  IS_DISPLAY_WEB="FALSE"
+fi
+
 while read line  
 do   
     if [ ! -z "$line" ]
