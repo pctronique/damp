@@ -16,7 +16,7 @@ case "$1" in
 
 esac
 
-if ! bash -c "${0%/*}/bin/install/all_question.sh" ; then
+if ! ${0%/*}/bin/install/all_question.sh ; then
   exit 1
 fi
 
@@ -56,15 +56,15 @@ if docker compose up -d ; then
 
   if [ $TYPE_INSTALL_PROJECT = "install" ]
   then
-    if ! bash -c "${0%/*}/bin/install/createProject.sh" ; then
+    if ! ${0%/*}/bin/install/createProject.sh ; then
       exit 1
     fi
-    if ! bash -c "${0%/*}/bin/version/recup_all_version.sh" ; then
+    if ! ${0%/*}/bin/version/recup_all_version.sh ; then
       exit 1
     fi
   fi
 
-  if ! bash -c "${0%/*}/bin/install/display_web.sh" ; then
+  if ! ${0%/*}/bin/install/display_web.sh ; then
     exit 1
   fi
 
