@@ -67,9 +67,7 @@ if docker compose up -d ; then
     fi
   fi
 
-  if ! rm -f -r "${0%/*}/tmp_install" ; then
-    exit 1
-  fi
+  rm -f -r "${0%/*}/tmp_install"
 
   ${0%/*}/bin/install/display_web.sh
 

@@ -34,8 +34,8 @@ services:
             - ./projecttmp/tmp/php:/var/tmp/php:rw
             - ./.docker/config/config_sgbd.php:/home/project/www/config/config_sgbd.php:rw
             - ./.docker/php/opcache-recommended.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini:ro
-            - ./.docker/php/mail_mhsendmail.ini:/usr/local/etc/php/conf.d/mail_mhsendmail.ini:ro
             - ./.docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
+            - ./.docker/php/php_mail.ini:/usr/local/etc/php/conf.d/php_mail.ini:ro
             #- ./.docker/php/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
             
 
