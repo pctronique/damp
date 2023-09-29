@@ -51,7 +51,7 @@ services:
             - ./projecttmp/tmp/sgbd:/var/tmp/mysql:rw
             - ./projecttmp/sgbd_data:/var/lib/mysql
             - ./.docker/mariadb/mariadb.cnf:/etc/mysql/conf.d/mariadb.cnf:ro
-            - ./config/sgbd_data/0000_default.sql:/docker-entrypoint-initdb.d/0000_default.sql
+            - ./.docker/config/0000_default.sql:/docker-entrypoint-initdb.d/0000_default.sql
             # start sql
             - ./config/sgbd_data/0001_people.sql:/docker-entrypoint-initdb.d/0001_people.sql
             # stop sql
