@@ -10,6 +10,11 @@ then
     PHP_FOLDER_INIT="/var/docker/php/"
 fi
 
+if [ -z ${PHP_FOLDER_PROJECT} ]
+then
+    PHP_FOLDER_PROJECT=/usr/local/apache2/www
+fi
+
 ${PHP_FOLDER_INIT}importdata.sh 2>> ${PHP_FOLDER_LOG}installdata.log
 
 crontab /etc/cron.d/dockercron
