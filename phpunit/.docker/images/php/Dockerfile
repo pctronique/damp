@@ -27,9 +27,8 @@ ENV DEF_PHP_UNIT_VERSION=${DEF_PHPUNIT_VERSION:-"${VALUE_PHP_UNIT_VERSION}"}
 ENV PHP_UNIT_VERSION=${DEF_PHP_UNIT_VERSION:+"phpunit/phpunit:${DEF_PHP_UNIT_VERSION}"}
 ENV PHP_UNIT_VERSION=${PHP_UNIT_VERSION:-'phpunit/phpunit'}
 
-ARG VALUE_GOLANG_VERSION
-ENV DEF_GOLANG_VERSION=${VALUE_GOLANG_VERSION:-"1.11.8"}
-ARG GOLANG_VERSION="https://storage.googleapis.com/golang/go${DEF_GOLANG_VERSION}.linux-amd64.tar.gz"
+ARG VALUE_MHSEND_VERSION
+ENV DEF_MHSEND_VERSION=${VALUE_MHSEND_VERSION:-"v0.2.0"}
 
 ARG PHP_FOLDER_PROJECT
 ENV PHP_FOLDER_PROJECT=${PHP_FOLDER_PROJECT:-"/usr/local/apache2/www"}
@@ -42,7 +41,13 @@ ENV PHP_FOLDER_INIT_DATA="/docker-entrypoint-initdata.d/"
 # install package
 RUN set -ex
 RUN apt-get update
-RUN apt-get install -y libxml2-dev 
+RUN apt-get install -y curl
+RUN apt-get install -y git
+RUN apt-get install -y cron
+RUN apt-get install -y inotify-tools
+RUN apt-get install -y golang-go
+RUN apt-get install -y unzip
+RUN apt-get install -y libxml2-dev
 RUN apt-get install -y libldb-dev
 RUN apt-get install -y libldap2-dev
 RUN apt-get install -y libssl-dev
@@ -51,11 +56,8 @@ RUN apt-get install -y wget
 RUN apt-get install -y graphviz
 RUN apt-get install -y libzip-dev
 RUN apt-get install -y vim
-RUN apt-get install -y curl
 RUN apt-get install -y debconf
 RUN apt-get install -y subversion
-RUN apt-get install -y apt-transport-https
-RUN apt-get install -y apt-utils
 RUN apt-get install -y build-essential
 RUN apt-get install -y locales
 RUN apt-get install -y acl
@@ -64,32 +66,20 @@ RUN apt-get install -y wget
 RUN apt-get install -y libjpeg-dev
 RUN apt-get install -y libpng-dev
 RUN apt-get install -y libmcrypt-dev
-RUN apt-get install -y unzip
-RUN apt-get install -y cron
-RUN apt-get install -y inotify-tools
-#pour mailhog 
-RUN apt-get install --no-install-recommends --assume-yes --quiet ca-certificates curl git
-RUN apt-get install -y libc-client-dev libkrb5-dev
-#pour YAML extension
-RUN apt-get install libyaml-dev -y
+RUN apt-get install -y libyaml-dev
+RUN apt-get install -y libc-client-dev
+RUN apt-get install -y libkrb5-dev
 #del list
 RUN rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-configure gd --with-jpeg
-RUN docker-php-ext-install -j5 gd mysqli pdo_mysql xsl zip
-   
-#install mailhog
-RUN curl -Lsf ${GOLANG_VERSION} | tar -C '/usr/local' -xvzf -
-ENV PATH /usr/local/go/bin:$PATH
-RUN go get github.com/mailhog/mhsendmail
-RUN cp /root/go/bin/mhsendmail /usr/bin/mhsendmail
-
-
 RUN docker-php-ext-configure intl
-RUN docker-php-ext-install intl
-
-RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-    && docker-php-ext-install imap
+RUN docker-php-ext-configure gd --with-jpeg
+RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl
+RUN docker-php-ext-install -j7 gd mysqli pdo_mysql xsl zip intl imap
+   
+#install mhsendmail
+RUN go install github.com/mailhog/mhsendmail@${DEF_MHSEND_VERSION}
+RUN cp /root/go/bin/mhsendmail /usr/bin/mhsendmail
 
 # Install YAML extension
 RUN pecl install yaml && echo "extension=yaml.so" > /usr/local/etc/php/conf.d/ext-yaml.ini
