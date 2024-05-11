@@ -15,8 +15,8 @@ ENV DEF_PHPX_VERSION=${VALUE_PHP_VERSION}
 
 ENV DEF_PHPXDEBUG_VERSION=${VALUE_PHP_VERSION:-"3.3.2"}
 ENV DEF_PHPXDEBUG_VERSION=${DEF_PHPXDEBUG_VERSION##${DEF_PHPX_VERSION}}
-ARG PHP_XDEBUG_VERSION
-ENV DEF_XDEBUG_VERSION=${DEF_PHPXDEBUG_VERSION:-"${PHP_XDEBUG_VERSION}"}
+ARG VALUE_XDEBUG_VERSION
+ENV DEF_XDEBUG_VERSION=${DEF_PHPXDEBUG_VERSION:-"${VALUE_XDEBUG_VERSION}"}
 ENV XDEBUG_VERSION=${DEF_XDEBUG_VERSION:+"xdebug-${DEF_XDEBUG_VERSION}"}
 ENV XDEBUG_VERSION=${XDEBUG_VERSION:-'xdebug'}
 
@@ -67,6 +67,7 @@ RUN apt install -y libpng-dev
 RUN apt install -y libmcrypt-dev
 RUN apt install -y unzip
 RUN apt install -y cron
+RUN apt install -y inotify-tools
 #pour mailhog 
 RUN apt install --no-install-recommends --assume-yes --quiet ca-certificates curl git
 RUN apt install -y libc-client-dev libkrb5-dev
