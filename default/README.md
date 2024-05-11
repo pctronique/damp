@@ -1,4 +1,4 @@
-# dockerphponline
+# damp : Docker Apach Mariadb Php
 Par [pctronique](https://pctronique.fr/) <br />
 Version 1.1.0
 
@@ -31,7 +31,11 @@ Version 1.1.0
                 <li><a href="#Les-données-de-la-base-de-données">Les données de la base de données</a></li>
                 <li><a href="#Les-données-de-mailhog">Les données de mailhog</a></li>
             </ul>
-            <li><a href="#Dossier-config-dans-www">Dossier config dans www</a></li>
+            <li><a href="#Dossiers">Dossiers</a></li>
+            <ul>
+              <li><a href="#Dossier-config-dans-www">Dossier config dans www</a></li>
+              <li><a href="#Dossier-data-dans-www">Dossier data dans www</a></li>
+            </ul>
         </ul>
     </li>
   </ol>
@@ -172,7 +176,7 @@ VALUE_PHPMYADMIN_VERSION=latest
 ### Config
 
 #### Configurations du SGBD du site
-Modifier le nom de la base de données dans le fichier « .env.example » et reconstruire le fichier « .env » (ou faire aussi la modification à l'intérieur).
+Modifier le nom de la base de données dans le fichier « .env.example » et le modifier aussi dans le fichier « .env » (Si celui-ci existe).
 
 ```
 SGBD_DATABASE=project
@@ -230,6 +234,40 @@ FOLDER_CONFIG=config
 Par le nouveau chemin :
 ```
 FOLDER_CONFIG=src/config
+```
+
+Pas oublier de le modifier dans le fichier « .gitignore », pour ne pas transmettre les fichiers qui devront être seulement utilisé en local :
+```
+/www/config/config_sgbd.php
+/www/config/filedotenv.php
+/www/config/.env
+```
+Par le nouveau chemin :
+```
+/www/src/config/config_sgbd.php
+/www/src/config/filedotenv.php
+/www/src/config/.env
+```
+
+> [!WARNING]
+> Le faire avant de créer le fichier « .env » et de construire les conteneurs. Sinon, supprimer les conteneurs et le fichier « .env » avant de modifier l'emplacement du dossier.
+
+### Dossier data dans www
+
+Le dossier « data » va contenir les fichiers à récupérer pour une configuration en local par défaut lors de la construction du conteneur.
+Vous pouvez déplacer le dossier « data » du dossier « www », mais il doit rester dans ce dossier.
+Par exemple le placer dans « src/data » (« www/src/data »).
+
+> [!NOTE]
+> Ceci concerne seulement le dossier « config » qui se trouve dans le dossier « www ».
+
+Remplacer la ligne dans le fichier « .env.example » :
+```
+FOLDER_DATA=data
+```
+Par le nouveau chemin :
+```
+FOLDER_DATA=src/data
 ```
 
 Pas oublier de le modifier dans le fichier « .gitignore », pour ne pas transmettre les fichiers qui devront être seulement utilisé en local :
