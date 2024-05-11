@@ -29,7 +29,7 @@ services:
                 - VALUE_PHP_VERSION=${VALUE_PHP_VERSION}
                 - VALUE_XDEBUG_VERSION=${VALUE_XDEBUG_VERSION}
                 - VALUE_COMPOSER_VERSION=${VALUE_COMPOSER_VERSION}
-                - VALUE_GOLANG_VERSION=1.11.8
+                - VALUE_MHSEND_VERSION=${VALUE_MHSENDMAIL_VERSION}
         volumes:
             - ./www/:/usr/local/apache2/www
             - ./.env:/usr/local/apache2/www/${FOLDER_CONFIG}/.env:rw
@@ -40,6 +40,7 @@ services:
             - ./.docker/containers/php/opcache-recommended.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini:ro
             - ./.docker/containers/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
             - ./.docker/containers/php/php.ini:/usr/local/etc/php/conf.d/php.ini:ro
+            - ./.docker/containers/php/mailhog.ini:/usr/local/etc/php/conf.d/mailhog.ini:ro
             - ./.dockertmp/log/php:/var/log/docker/php:rw
             - ./.dockertmp/log/xdebug:/var/log/docker/xdebug:rw
             - ./.dockertmp/tmp/php:/var/tmp/docker/php:rw
@@ -89,13 +90,12 @@ services:
         build:
             context: .docker/images/mailhog
             args:
-                - VALUE_MAILHOG_VERSION=${VALUE_MAILHOG_VERSION}
+                - VALUE_MHOG_VERSION=${VALUE_MAILHOG_VERSION}
         container_name: ${NAME_PROJECT}_mailhog
         restart: always
-        tty: false
-        privileged: false
         volumes:
             - ./.dockertmp/mailhog:/mailhog
+            - ./config/email_data:/docker-entrypoint-initdata.d:rw
         environment:
             - MH_STORAGE=maildir
             - MH_MAILDIR_PATH=/mailhog
