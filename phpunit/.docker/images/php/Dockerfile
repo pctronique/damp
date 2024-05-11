@@ -41,38 +41,37 @@ ENV PHP_FOLDER_INIT_DATA="/docker-entrypoint-initdata.d/"
 
 # install package
 RUN set -ex
-RUN apt update
-RUN apt upgrade -y  
-RUN apt install -y libxml2-dev 
-RUN apt install -y libldb-dev
-RUN apt install -y libldap2-dev
-RUN apt install -y libssl-dev
-RUN apt install -y libxslt-dev
-RUN apt install -y wget
-RUN apt install -y graphviz
-RUN apt install -y libzip-dev
-RUN apt install -y vim
-RUN apt install -y curl
-RUN apt install -y debconf
-RUN apt install -y subversion
-RUN apt install -y apt-transport-https
-RUN apt install -y apt-utils
-RUN apt install -y build-essential
-RUN apt install -y locales
-RUN apt install -y acl
-RUN apt install -y mailutils
-RUN apt install -y wget
-RUN apt install -y libjpeg-dev
-RUN apt install -y libpng-dev
-RUN apt install -y libmcrypt-dev
-RUN apt install -y unzip
-RUN apt install -y cron
-RUN apt install -y inotify-tools
+RUN apt-get update
+RUN apt-get install -y libxml2-dev 
+RUN apt-get install -y libldb-dev
+RUN apt-get install -y libldap2-dev
+RUN apt-get install -y libssl-dev
+RUN apt-get install -y libxslt-dev
+RUN apt-get install -y wget
+RUN apt-get install -y graphviz
+RUN apt-get install -y libzip-dev
+RUN apt-get install -y vim
+RUN apt-get install -y curl
+RUN apt-get install -y debconf
+RUN apt-get install -y subversion
+RUN apt-get install -y apt-transport-https
+RUN apt-get install -y apt-utils
+RUN apt-get install -y build-essential
+RUN apt-get install -y locales
+RUN apt-get install -y acl
+RUN apt-get install -y mailutils
+RUN apt-get install -y wget
+RUN apt-get install -y libjpeg-dev
+RUN apt-get install -y libpng-dev
+RUN apt-get install -y libmcrypt-dev
+RUN apt-get install -y unzip
+RUN apt-get install -y cron
+RUN apt-get install -y inotify-tools
 #pour mailhog 
-RUN apt install --no-install-recommends --assume-yes --quiet ca-certificates curl git
-RUN apt install -y libc-client-dev libkrb5-dev
+RUN apt-get install --no-install-recommends --assume-yes --quiet ca-certificates curl git
+RUN apt-get install -y libc-client-dev libkrb5-dev
 #pour YAML extension
-RUN apt install libyaml-dev -y
+RUN apt-get install libyaml-dev -y
 #del list
 RUN rm -rf /var/lib/apt/lists/*
 
