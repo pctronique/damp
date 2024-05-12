@@ -283,6 +283,9 @@ Exemple (dans « ./config/dockercron ») :
 *  *  *  *  * echo "hello projet" >> /usr/local/apache2/www/testcron.log
 ```
 
+> [!NOTE]
+> Toutes modifications du fichier sera récupérée automatiquement par le conteneur.
+
 ## Stockages
 
 ### Les données de la base de données
