@@ -12,7 +12,3 @@ La création de l'image est plus longue avec Phpunit.
   <li>default : sans phpunit</li>
   <li>phpunit : avec phpunit</li>
 </ul>
-
-$ docker image prune
-$ docker container prune
-$ docker image prune -a
