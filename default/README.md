@@ -195,40 +195,6 @@ Par le nouveau chemin :
 > [!WARNING]
 > Le faire avant de créer le fichier « .env » et de construire les conteneurs. Sinon, supprimer les conteneurs et le fichier « .env » avant de modifier l'emplacement du dossier.
 
-### Dossier data dans www
-
-Le dossier « data » va contenir les fichiers à récupérer pour une configuration en local par défaut lors de la construction du conteneur.
-Vous pouvez déplacer le dossier « data » du dossier « www », mais il doit rester dans ce dossier.
-Par exemple le placer dans « src/data » (« www/src/data »).
-
-> [!NOTE]
-> Ceci concerne seulement le dossier « config » qui se trouve dans le dossier « www ».
-
-Remplacer la ligne dans le fichier « .env.example » :
-```
-FOLDER_DATA=data
-```
-Par le nouveau chemin :
-```
-FOLDER_DATA=src/data
-```
-
-Pas oublier de le modifier dans le fichier « .gitignore », pour ne pas transmettre les fichiers qui devront être seulement utilisé en local :
-```
-/www/config/config_sgbd.php
-/www/config/filedotenv.php
-/www/config/.env
-```
-Par le nouveau chemin :
-```
-/www/src/config/config_sgbd.php
-/www/src/config/filedotenv.php
-/www/src/config/.env
-```
-
-> [!WARNING]
-> Le faire avant de créer le fichier « .env » et de construire les conteneurs. Sinon, supprimer les conteneurs et le fichier « .env » avant de modifier l'emplacement du dossier.
-
 ### Data dans www
 
 Il va permettre de récupérer des fichiers par défaut lors de la création du conteneur.
