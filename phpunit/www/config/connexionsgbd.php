@@ -3,11 +3,11 @@
 require __DIR__ . "/config_sgbd.php";
 
 // creation de la ligne de connexion a placer dans le PDO
-$configsgbd = $type . ':host=' . $server;
-if(!empty($port) && $port !== "0") {
-    $configsgbd .= ';port=' . $port;
+$configsgbd = $sgbd_type . ':host=' . $sgbd_server;
+if(!empty($sgbd_port) && $sgbd_port !== "0") {
+    $configsgbd .= ';port=' . $sgbd_port;
 }
-$configsgbd .= ';dbname=' . $dbname;
+$configsgbd .= ';dbname=' . $sgbd_dbname;
 $configsgbd .= ";charset=UTF8";
 
-$sgbd = new PDO($configsgbd, $user, $pass);
+$sgbd = new PDO($configsgbd, $sgbd_user, $sgbd_pass);
