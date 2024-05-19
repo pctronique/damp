@@ -147,7 +147,7 @@ SGBD_DATABASE=project
 
 Le fichier « www/config/connexionsgbd.php » se connecte à base de données avec la classe PDO de php :
 ```
-$sgbd = new PDO($configsgbd, $user, $pass);
+$sgbd = new PDO($configsgbd, $sgbd_user, $sgbd_pass);
 ```
 Vous pouvez le modifier si besoin.
 
