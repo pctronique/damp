@@ -20,10 +20,14 @@ require __DIR__ . "/config/connexionsgbd.php";
         img {
             width: 250px;
         }
+        .logo2 {
+            margin-top:40px;
+        }
     </style>
 </head>
 <body>
     <h1>Hello world!</h1>
     <img src="./logo.svg" alt="logo">
+    <img src="./Apache_HTTP_server_logo.svg" alt="logo" class="logo2">
 </body>
 </html>
