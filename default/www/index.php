@@ -27,7 +27,8 @@ require __DIR__ . "/config/connexionsgbd.php";
 </head>
 <body>
     <h1>Hello world!</h1>
-    <img src="./logo.svg" alt="logo">
-    <img src="./Apache_HTTP_server_logo.svg" alt="logo" class="logo2">
+    <img src="./img/logo.svg" alt="logo php">
+    <img src="./img/Apache_HTTP_server_logo.svg" alt="logo php" class="logo2">
+    <img src="./img/Mariadb-seal-browntext.svg" alt="logo php" class="logo2">
 </body>
 </html>
